@@ -2,20 +2,21 @@
 
 namespace Classes;
 
-class Shape {
-    private $name;
-    private $cornersCount;
-
-    public function __construct($name, $cornersCount) {
-        $this->name = $name;
-        $this->cornersCount = $cornersCount;
+class Shape
+{
+    public function __construct(
+        private string $name,
+        private int $cornersCount
+    ) {
     }
 
-    public function getName() {
+    public function getName(): string
+    {
         return $this->name;
     }
 
-    public function getCornersCount() {
+    public function getCornersCount(): int
+    {
         return $this->cornersCount;
     }
 }

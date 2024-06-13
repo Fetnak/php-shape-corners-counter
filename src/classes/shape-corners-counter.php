@@ -8,31 +8,36 @@ use Classes\Shape;
 
 class ShapeCornersCounter
 {
-    private $shapes = [];
+    public const SHAPES = [
+        'square' => 4,
+        'circle' => 0,
+    ];
 
-    public function __construct($shapes)
+    private array $shapes = [];
+
+    public function __construct()
     {
-        foreach ($shapes as $shape => $cornersCount) {
+        foreach (self::SHAPES as $shape => $cornersCount) {
             $this->shapes[$shape] = new Shape($shape, $cornersCount);
         }
     }
 
-    public function getShape($name)
+    private function getShape(string $name): Shape|null
     {
-        return isset($this->shapes[$name]) ? $this->shapes[$name] : null;
+        return $this->shapes[$name] ?? null;
     }
 
 
-    public function getCornersCount(...$shapeNames)
+    public function getCornersCount(string ...$shapeNames): string
     {
         $text = "";
 
         foreach ($shapeNames as $shapeName) {
             $shape = $this->getShape($shapeName);
             if ($shape) {
-                $text .= "{$shape->getName()} - {$shape->getCornersCount()}\n";
+                $text .= sprintf("%s - %d\n", $shape->getName(), $shape->getCornersCount());
             } else {
-                $text .= "$shapeName - not defined\n";
+                $text .= sprintf("%s - not defined\n", $shapeName);
             }
         }
 

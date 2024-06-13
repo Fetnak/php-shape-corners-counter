@@ -12,10 +12,10 @@ function getCornersCount(...$shapeNames)
     $text = "";
 
     foreach ($shapeNames as $shapeName) {
-        if (isset($shapes[$shapeName])) {
-            $text .= "$shapeName - {$shapes[$shapeName]}\n";
+        if (array_key_exists($shapeName, $shapes)) {
+            $text .= sprintf("%s - %d\n", $shapeName, $shapes[$shapeName]);
         } else {
-            $text .= "$shapeName - not defined\n";
+            $text .= sprintf("%s - not defined\n", $shapeName);
         }
     }
 
