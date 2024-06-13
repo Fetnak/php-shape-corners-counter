@@ -1,12 +1,14 @@
 <?php
 
+
 function getCornersCount(...$shapeNames)
 {
+
     $shapes = [
         'square' => 4,
         'circle' => 0,
     ];
-    
+
     $text = "";
 
     foreach ($shapeNames as $shapeName) {
